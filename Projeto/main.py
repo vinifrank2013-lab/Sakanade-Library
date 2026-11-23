@@ -10,6 +10,7 @@ global title
 global author
 global year
 global pages
+global genre
 global completed_book
 global book_found
 book_found = False
@@ -71,6 +72,8 @@ def add_books():
                break
            else:
                print("You typed wrong. Let's try again.")
+          print("What Genre is it?")
+          genre = str(input())
 
           print("Thanks for your information.")
           book_inf = {
@@ -78,7 +81,8 @@ def add_books():
                "author": author,
                "year": year,
                "pages": pages,
-               "completed": completed_book
+               "completed": completed_book,
+               "genre": genre
                      }
           all_books["books"].append(book_inf)
           
@@ -93,6 +97,7 @@ def search_books():
                     print(f"We found your book! It is {i[0]}")
                     print(f"It was made by: {i[1]}, was released in: {i[2]}")
                     print(f"And it has {i[3]} pages.")
+                    print(f"It's Genre is {i[5]}.")
                     if completed_book == True:
                         print("And you've completed it already.")
                     else:
@@ -143,7 +148,93 @@ def list_books():
 
 
 def edit_books():
-      print
+                print("Ok, firstly, we need to search your book")
+                print("Type what book do you wish to search:")
+                search = str(input())
+                for i in all_books["books"]:
+                     if search.lower == i[0].lower:
+                               print(f"We found your book! It is {title}.")
+                               while True:
+                                print("EDIT MENU")
+                                print("1. Edit Title")
+                                print("2. Edit Author")
+                                print("3. Edit Year of Publication")
+                                print("4. Edit Number of pages")
+                                print("5. Edit Genre")
+                                print("6. Exit edit menu")
+                                print("Type What you want to do")
+                                opmenu = int(input())
+                                if opmenu == 1:
+                                     print("Ok, let's edit the title")
+                                     print("Type it below")
+                                     i[0] = str(input())
+                                     print("Ok, name changed!")
+                                     print("Do you want to edit something else?")
+                                     print("Type below Y for yes and N for no")
+                                     optitle = str(input())
+                                     if optitle.lower == "y":
+                                           continue
+                                     else:
+                                           break
+                                elif opmenu == 2:
+                                      print("Ok, let's edit the author")
+                                      print("Type it below")
+                                      i[1] = str(input())
+                                      print("Ok, Author changed!")
+                                      print("Do you want to edit something else?")
+                                      print("Type below Y for yes and N for no")
+                                      optitle = str(input())
+                                      if optitle.lower == "y":
+                                          continue
+                                      else:
+                                          break
+                                elif opmenu == 3:
+                                      print("Ok, let's edit the Year of release")
+                                      print("Type it below")
+                                      i[2] = int(input())
+                                      print("Ok, Year changed!")
+                                      print("Do you want to edit something else?")
+                                      print("Type below Y for yes and N for no")
+                                      optitle = str(input())
+                                      if optitle.lower == "y":
+                                          continue
+                                      else:
+                                         break
+                                elif opmenu == 4:
+                                      print("Ok, let's edit the Number of pages")
+                                      print("Type it below")
+                                      i[3] = int(input())
+                                      print("Ok, Number of pages changed!")
+                                      print("Do you want to edit something else?")
+                                      print("Type below Y for yes and N for no")
+                                      optitle = str(input())
+                                      if optitle.lower == "y":
+                                              continue
+                                      else:
+                                           break
+                                elif opmenu == 5:
+                                       print("Ok, let's edit the Genre")
+                                       print("Type it below")
+                                       i[5] = str(input())
+                                       print("Ok, Genre changed!")
+                                       print("Do you want to edit something else?")
+                                       print("Type below Y for yes and N for no")
+                                       optitle = str(input())
+                                       if optitle.lower == "y":
+                                               continue
+                                       else:
+                                            break
+                                      
+
+
+
+                                
+                                elif opmenu == 6:
+                                      print("Ok, exiting the edit menu.")
+                                      break
+                    
+                                      
+                                    
       
 
 
@@ -153,6 +244,7 @@ def show_book(i):
       print(f"Author: {i[1]}")
       print(f"Year of Release: {i[2]}")
       print(f"Number of pages: {i[3]}")
+      print(f"Genre: {i[5]}")
       if i[4] == True:
             print("Completed: Yes")
       else:
