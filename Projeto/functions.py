@@ -16,6 +16,23 @@ global book_found
 book_found = False
 completed_book = False
 
+def get_integer():
+      while True:
+            try:
+             number = int(input())
+             return number
+            except ValueError:
+                  print("Please, type a valid number")
+
+def get_string():
+      while True:
+            try:
+                  string = str(input())
+                  return string
+            except ValueError:
+                  print("Please, type a valid word")
+
+
 def save_json():
       print("Okay, let's save your library in JSON")
 
@@ -55,19 +72,19 @@ def load_json():
 def add_books():
      print("Ok, let's add some books to your collection!")
      print("How many books would you like to add?")
-     num_books = int(input())
+     num_books = get_integer()
      for i in range(num_books):
           print("What's the name of this book?")
-          title = str(input())
+          title = get_string
           print("What is the author of this book?")
-          author = str(input())
+          author = get_string
           print("What is the year of this book?")
-          year = int(input())
+          year = get_integer()
           print("How many pages are in your book?")
-          pages = int(input())
+          pages = get_integer()
           while True:
            print("You've completed it? Type Y for yes and N for no.")
-           completed_book_text = str(input())
+           completed_book_text = get_string()
            if completed_book_text.lower() =='y':
                print("Ok.")
                completed_book = True
@@ -79,7 +96,7 @@ def add_books():
            else:
                print("You typed wrong. Let's try again.")
           print("What Genre is it?")
-          genre = str(input())
+          genre = get_string
 
           print("Thanks for your information.")
           book_inf = {
@@ -98,7 +115,7 @@ def search_books():
      found = False
      print("Ok, let's search for your books")
      print("Type what book do you wish to search:")
-     search = str(input())
+     search = get_string()
      for i in all_books["books"]:
           if search.lower() == i["title"].lower():
                     print(f"We found your book! It is {i["title"]}")
@@ -117,7 +134,8 @@ def search_books():
 def remove_books():
           print("Okay, let's remove the book you need")
           print("Type what book do you wish to remove:")
-          search = str(input())
+          search = get_string()
+          foundToremove = False
           for i in all_books["books"]:
                if search.lower() == i["title"].lower():
                          print(f"We found your book! It is {i["title"]}")
@@ -134,7 +152,8 @@ def remove_books():
 def mark_as_read():
           print("Okay, first, we need to search your book")
           print("Type what book do you wish to search:")
-          search = str(input())
+          search = get_string()
+          foundMark = False
           for i in all_books["books"]:
                if search.lower() == i["title"].lower():
                          print(f"We found your book! It is {i["title"]}")
@@ -159,7 +178,8 @@ def list_books():
 def edit_books():
                 print("Ok, firstly, we need to search your book")
                 print("Type what book do you wish to search:")
-                search = str(input())
+                search = get_string()
+                foundToEdit = False
                 for i in all_books["books"]:
                      if search.lower() == i["title"].lower():
                                print(f"We found your book! It is {i["title"]}.")
@@ -173,7 +193,7 @@ def edit_books():
                                 print("5. Edit Genre")
                                 print("6. Exit edit menu")
                                 print("Type What you want to do")
-                                opmenu = int(input())
+                                opmenu = get_integer()
                                 if opmenu == 1:
                                      print("Ok, let's edit the title")
                                      print("Type it below")
@@ -201,7 +221,7 @@ def edit_books():
                                 elif opmenu == 3:
                                       print("Ok, let's edit the Year of release")
                                       print("Type it below")
-                                      i["year"] = int(input())
+                                      i["year"] = get_integer()
                                       print("Ok, Year changed!")
                                       print("Do you want to edit something else?")
                                       print("Type below Y for yes and N for no")
@@ -213,7 +233,7 @@ def edit_books():
                                 elif opmenu == 4:
                                       print("Ok, let's edit the Number of pages")
                                       print("Type it below")
-                                      i["pages"] = int(input())
+                                      i["pages"] = get_integer()
                                       print("Ok, Number of pages changed!")
                                       print("Do you want to edit something else?")
                                       print("Type below Y for yes and N for no")

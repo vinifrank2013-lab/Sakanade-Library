@@ -15,7 +15,7 @@ while True:
     print("7. Save your Library in JSON format")
     print("8. Exit the Library")
     print("Type below your option!")
-    opmenu = int(input())
+    opmenu = functions.get_integer()
     if opmenu == 1:
         functions.add_books()
     elif opmenu == 2:
