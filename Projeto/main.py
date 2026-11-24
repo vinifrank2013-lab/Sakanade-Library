@@ -29,7 +29,9 @@ while True:
     elif opmenu == 6:
         functions.mark_as_read()
     elif opmenu == 7:
-        functions.save_json
+        functions.save_json()
     elif opmenu == 8:
         print("Exiting Sakanade's Library! Return soon!")
         break
+    else:
+        print("Invalid option. Try again")
