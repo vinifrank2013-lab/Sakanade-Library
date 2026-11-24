@@ -31,6 +31,8 @@ while True:
     elif opmenu == 7:
         functions.save_json()
     elif opmenu == 8:
+        print("Before you exit, let's save your data.")
+        functions.save_json()
         print("Exiting Sakanade's Library! Return soon!")
         break
     else:

@@ -32,6 +32,9 @@ def load_json():
             print("Files loaded!")
       except FileNotFoundError:
             print("You don't have a json file to load")
+      except json.JSONDecodeError:
+            print("The content of your json is invalid. Try changing it!")
+
             
       
 
@@ -122,9 +125,9 @@ def remove_books():
                          
                          all_books["books"].remove(i)
                          print(f"Okay, we've removed {i} from your list")
-                         book_found = True
+                         foundToremove = True
                          break
-          if book_found == False:
+          if foundToremove == False:
                print("We didn't found your book. Try to add it in the add books tab")
 
 
@@ -141,8 +144,8 @@ def mark_as_read():
                                print(f"Okay, let's mark {i["title"]} as read")
                                i["completed"] = True
                                print(f"We marked {i["title"]} as read.")
-                         book_found = True
-          if book_found == False:
+                         foundMark = True
+          if foundMark == False:
                print("We didn't found your book. Try to add it in the add books tab")                    
                
         
@@ -160,6 +163,7 @@ def edit_books():
                 for i in all_books["books"]:
                      if search.lower() == i["title"].lower():
                                print(f"We found your book! It is {i["title"]}.")
+                               foundToEdit = True
                                while True:
                                 print("EDIT MENU")
                                 print("1. Edit Title")
@@ -238,6 +242,9 @@ def edit_books():
                                 elif opmenu == 6:
                                       print("Ok, exiting the edit menu.")
                                       break
+                if foundToEdit == False:
+                      print("We didn't found your book :( try again!")
+                  
                     
                                       
                                     
