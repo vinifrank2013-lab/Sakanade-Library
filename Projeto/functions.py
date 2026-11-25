@@ -1,5 +1,5 @@
 import json
-
+import csv
 
 
 
@@ -55,6 +55,38 @@ def load_json():
             
       
 
+def save_csv():
+
+      print("Okay, let's save it in a csv format!")
+
+      with open("Library.csv", "w") as file:
+            writer = csv.DictWriter(
+                  file,
+                  fieldnames=["title", "author", "year", "pages", "completed", "genre"]
+
+            )
+            writer.writeheader()
+      writer.writewows(all_books["books"])
+
+      print("Library saved in csv succesfully!")
+
+def load_csv():
+      try:
+       with open("library.csv", "w") as file:
+            reader = csv.DictReader(file)
+            for line in reader:
+                  book_inf ={
+                        "title": line["title"],
+                        "author": line["author"],
+                        "year": line["year"],
+                        "pages": line["pages"],
+                        "completed": line["completed"],
+                        "genre": line["genre"]
+
+                  }
+                  all_books["books"].append(book_inf)
+      except FileNotFoundError:
+            print("CSV file not found!")
 
 
 
@@ -75,9 +107,9 @@ def add_books():
      num_books = get_integer()
      for i in range(num_books):
           print("What's the name of this book?")
-          title = get_string
+          title = get_string()
           print("What is the author of this book?")
-          author = get_string
+          author = get_string()
           print("What is the year of this book?")
           year = get_integer()
           print("How many pages are in your book?")
@@ -99,6 +131,7 @@ def add_books():
           genre = get_string
 
           print("Thanks for your information.")
+          global book_inf
           book_inf = {
                "title": title,
                "author": author,
@@ -283,3 +316,56 @@ def show_book(i):
       else:
             print("Completed: No")
 
+def filter_books():
+      print("Let's filter your books!")
+      print("FILTER MENU")
+      while True:
+       print("1. Filter by author")
+       print("2. Filter by Year of release")
+       print("3. Filter by Genre")
+       print("4. Exit the filter menu")
+       opmenu = get_integer()
+       if opmenu == 1:
+             print("Okay, type below what author do you want to filter")
+             search_author = get_string()
+             same_author = []
+             for i in all_books["books"]:
+                   if search_author.lower() == i["author"].lower():
+                         same_author.append(i["title"])
+            
+             print("Okay, let's filter it!")
+             if not same_author:
+                   print("No book found... Try adding it in the Add books menu.")
+             print(f"All books with the {search_author} author:")
+             print(same_author)
+       elif opmenu == 2:
+                   print("Okay, type below what year of release do you want to filter")
+                   search_year = get_integer()
+                   same_year = []
+                   for i in all_books["books"]:
+                         if search_year.lower() == i["year"].lower():
+                               same_year.append(i["title"])
+      
+                   print("Okay, let's filter it!")
+                   if not same_year:
+                         print("No book found... Try adding it in the Add books menu.")
+                   print(f"All books with the {search_year} year of release:")
+                   print(same_year)
+       elif opmenu == 3:
+                         print("Okay, type below what genre do you want to filter")
+                         search_genre = get_string()
+                         same_genre = []
+                         for i in all_books["books"]:
+                               if search_genre.lower() == i["genre"].lower():
+                                     same_genre.append(i["title"])
+       
+                         print("Okay, let's filter it!")
+                         if not same_genre:
+                               print("No book found... Try adding it in the Add books menu.")
+                         print(f"All books with the {search_genre} genre:")
+                         print(same_genre)
+       elif opmenu == 4:
+             print("Okay, exiting the filter menu...")
+             break
+                         
+                         

@@ -2,6 +2,7 @@ import functions
 import json
 
 functions.load_json()
+functions.load_csv()
 
 print("Welcome to Sakanade's Library! Now, let's start!")
 while True:
@@ -12,8 +13,10 @@ while True:
     print("4. List books")
     print("5. Edit Books")
     print("6. Mark a book as read")
-    print("7. Save your Library in JSON format")
-    print("8. Exit the Library")
+    print("7. Filter books")
+    print("8. Save your Library in JSON format")
+    print("9. Save your Library in CSV format")
+    print("10. Exit the Library")
     print("Type below your option!")
     opmenu = functions.get_integer()
     if opmenu == 1:
@@ -29,8 +32,12 @@ while True:
     elif opmenu == 6:
         functions.mark_as_read()
     elif opmenu == 7:
-        functions.save_json()
+        functions.filter_books()
     elif opmenu == 8:
+        functions.save_json()
+    elif opmenu == 9:
+        functions.save_csv()
+    elif opmenu == 10:
         print("Before you exit, let's save your data.")
         functions.save_json()
         print("Exiting Sakanade's Library! Return soon!")
